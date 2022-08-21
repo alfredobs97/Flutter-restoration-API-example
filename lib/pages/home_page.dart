@@ -3,6 +3,7 @@ import 'package:restoration_api/app_router.dart';
 import 'package:restoration_api/pages/last_page.dart';
 import 'package:restoration_api/pages/second_page.dart';
 import 'package:restoration_api/utils/gender_enum.dart';
+import 'package:restoration_api/utils/restorable_gender.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -17,6 +18,8 @@ class _HomePageState extends State<HomePage> with RestorationMixin {
 
   final RestorableBool _isTermsChecked = RestorableBool(false);
 
+  final RestorableGender _gender = RestorableGender();
+
   @override
   String? get restorationId => 'MyHomePageRestorationId';
 
@@ -25,6 +28,7 @@ class _HomePageState extends State<HomePage> with RestorationMixin {
     registerForRestoration(_nameController, "nameController");
     registerForRestoration(_surnameController, "surnameController");
     registerForRestoration(_isTermsChecked, "termsChecked");
+    registerForRestoration(_gender, "gender");
   }
 
   @override
@@ -63,6 +67,24 @@ class _HomePageState extends State<HomePage> with RestorationMixin {
                   )
                 ],
               ),
+              const SizedBox(height: 20),
+              const Text('Select your gender'),
+              const SizedBox(height: 8),
+              DropdownButton<GenderEnum>(
+                value: _gender.value,
+                onChanged: (GenderEnum? value) {
+                  setState(() {
+                    _gender.value = value ?? GenderEnum.other;
+                  });
+                },
+                items: GenderEnum.values
+                    .map((GenderEnum gender) => DropdownMenuItem(
+                          value: gender,
+                          child: Text(gender.name),
+                        ))
+                    .toList(),
+              ),
+              const SizedBox(height: 20),
               MaterialButton(
                 color: Colors.indigo[100],
                 child: const Text('Go to second page!'),
