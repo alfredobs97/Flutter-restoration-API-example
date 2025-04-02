@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:restoration_api/app_router.dart';
-import 'package:restoration_api/pages/last_page.dart';
-import 'package:restoration_api/pages/second_page.dart';
 import 'package:restoration_api/utils/gender_enum.dart';
 import 'package:restoration_api/utils/restorable_gender.dart';
 

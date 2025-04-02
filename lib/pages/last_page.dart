@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:restoration_api/app_router.dart';
-import 'package:restoration_api/pages/second_page.dart';
 
 class LastPage extends StatelessWidget {
   const LastPage({Key? key}) : super(key: key);
